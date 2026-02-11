@@ -47,7 +47,7 @@ async def telegram_webhook(req: Request):
     text = data["message"].get("text", "")
 
     # 1️⃣ Whitelist
-    if ALLOWED_USERS and user_id not in ALLOWED_USERS:
+    if user_id not in ALLOWED_USERS:
         await bot.send_message(chat_id, "⛔ Zugriff nicht erlaubt.")
         return {"ok": True}
 
