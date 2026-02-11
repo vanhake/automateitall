@@ -12,14 +12,6 @@ user_requests = {}    # user_id → [timestamps]
 # ENV
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-
-if not TELEGRAM_TOKEN:
-    raise RuntimeError("OPENAI_API_KEY not set")
-if not OPENAI_API_KEY:
-    raise RuntimeError("OPENAI_API_KEY not set")
-if not ALLOWED_USERS:
-    raise RuntimeError("ALLOWED_USERS not configured")
-
 # Telegram User IDs, die den Bot nutzen dürfen
 def load_allowed_users():
     raw = os.getenv("ALLOWED_USERS", "")
@@ -28,6 +20,15 @@ def load_allowed_users():
     return {int(uid.strip()) for uid in raw.split(",") if uid.strip()}
 
 ALLOWED_USERS = load_allowed_users()
+
+if not TELEGRAM_TOKEN:
+    raise RuntimeError("OPENAI_API_KEY not set")
+if not OPENAI_API_KEY:
+    raise RuntimeError("OPENAI_API_KEY not set")
+if not ALLOWED_USERS:
+    raise RuntimeError("ALLOWED_USERS not configured")
+
+
 
 bot = Bot(token=TELEGRAM_TOKEN)
 client = OpenAI(api_key=OPENAI_API_KEY)
