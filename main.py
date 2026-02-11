@@ -19,10 +19,13 @@ if not OPENAI_API_KEY:
     raise RuntimeError("OPENAI_API_KEY not set")
 
 # Telegram User IDs, die den Bot nutzen dürfen
-ALLOWED_USERS = {
-    #123456789,   # du
-    #987654321    # weiterer Nutzer
-}
+def load_allowed_users():
+    raw = os.getenv("ALLOWED_USERS", "")
+    if not raw:
+        return set()
+    return {int(uid.strip()) for uid in raw.split(",") if uid.strip()}
+
+ALLOWED_USERS = load_allowed_users()
 
 bot = Bot(token=TELEGRAM_TOKEN)
 client = OpenAI(api_key=OPENAI_API_KEY)
