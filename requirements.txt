@@ -4,5 +4,10 @@ uvicorn[standard]==0.34.0
 python-telegram-bot==21.10
 openai==1.59.6
 
+# Image Processing
+httpx==0.28.1
+requests==2.32.3
+Pillow==11.1.0
+
 # Optional aber empfohlen
-python-dotenv==1.0.1  # Für lokale .env Datei
+python-dotenv==1.0.1
