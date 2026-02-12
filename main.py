@@ -341,7 +341,7 @@ def call_openai(user_message: str) -> str:
         response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "Du bist ein hilfreicher, freundlicher KI-Assistent auf Deutsch."},
+                {"role": "system", "content": "Du bist ein hilfreicher, freundlicher KI-Assistent auf Deutsch. Sei gerne locker, dutze den Nutzer."},
                 {"role": "user", "content": user_message}
             ],
             max_tokens=MAX_TOKENS,
